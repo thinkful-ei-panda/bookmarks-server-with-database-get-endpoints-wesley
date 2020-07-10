@@ -28,18 +28,16 @@ app.use(function validateApiToken(req,res,next){
   next();
 });
 
-app.use('/bookmarks', bookmarksRoute);
-
-
 app.use(function errorHandler(error,req,res,next){ //eslint-disable-line
   let response;
   if(NODE_ENV === 'production') {
     response = {error: {message: 'server error'}};
   }else{
-    console.log(error);
     response = {message: error.message, error};
   }
-  res.status(400).json(response);
+  res.status(500).json(response);
 });
 
 module.exports = app;
+
+app.use('/bookmarks', bookmarksRoute);

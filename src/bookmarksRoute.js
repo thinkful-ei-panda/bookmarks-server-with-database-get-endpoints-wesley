@@ -52,7 +52,6 @@ bookmarksRouter
     const {id} = req.params;
     const response = bookmarks.find(bookmark=> bookmark.id == id);
   
-    console.log(response);
     if(!response){
       logger.error(`Bookmark with id matching ${id} not found`);
       return res.status(404).json({error: `Bookmark with id matching ${id} not found`});
